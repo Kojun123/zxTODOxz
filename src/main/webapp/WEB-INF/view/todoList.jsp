@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js"></script>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -122,7 +126,7 @@
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label text-md-right pt-2">시작일</label>
                         <div class="col-md-4">
-                            <input type="text" autocomplete="false" class="form-control flatpickr-basic" data-gbn='date' id="NTE_STR_DT" data-id="NTE_STR_DT" name="NTE_STR_DT" placeholder="YYYY-MM-DD">
+                            <input type="text" autocomplete="false" class="form-control flatpickr-basic" data-gbn='date' id="STR_DT" data-id="STR_DT" name="STR_DT" placeholder="YYYY-MM-DD">
                         </div>
                         <label class="col-md-2 col-form-label text-md-right pt-2">마감일</label>
                         <div class="col-md-4">
@@ -146,10 +150,8 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js"></script>
+
+
 <script>
     $(document).ready(function(){
         $('.flatpickr-basic').flatpickr();
@@ -160,8 +162,21 @@
     }
 
     function TODO_SUBMIT(type) {
-        // TODO submit function logic
-        alert("TODO submitted with type: " + type);
+        // 폼 데이터 시리얼라이즈
+            var formData = $('#frmTODO').serialize();
+        formData = JSON.stringify(formData);
+        console.log('formData',formData);
+        // $.ajax({
+        //     type: 'POST',
+        //     url: '/your-server-endpoint',
+        //     data: formData,
+        //     success: function(response) {
+        //         console.log('성공:', response);
+        //     },
+        //     error: function(error) {
+        //         console.log('에러:', error);
+        //     }
+        // });
     }
 
     function getCompleteList() {
