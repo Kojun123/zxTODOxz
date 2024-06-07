@@ -162,21 +162,29 @@
     }
 
     function TODO_SUBMIT(type) {
-        // 폼 데이터 시리얼라이즈
-            var formData = $('#frmTODO').serialize();
-        formData = JSON.stringify(formData);
-        console.log('formData',formData);
-        // $.ajax({
-        //     type: 'POST',
-        //     url: '/your-server-endpoint',
-        //     data: formData,
-        //     success: function(response) {
-        //         console.log('성공:', response);
-        //     },
-        //     error: function(error) {
-        //         console.log('에러:', error);
-        //     }
-        // });
+        var formDataArray = $('#frmTODO').serializeArray();
+        var formDataObj = {};
+
+        formDataArray.forEach(function(item) {
+            formDataObj[item.name] = item.value;
+        });
+
+        var testvo01 = JSON.stringify(formDataObj);
+        console.log('formData', testvo01);
+
+        $.ajax({
+            type: 'POST',
+            url: '/todo/save',
+            contentType: 'application/json',
+            data: testvo01,
+            success: function(response) {
+                console.log('성공:', response);
+            },
+            error: function(error) {
+                console.log('에러:', error);
+            }
+        });
+
     }
 
     function getCompleteList() {
